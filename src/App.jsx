@@ -24,6 +24,20 @@ function App() {
       setCart((oldCart) => oldCart.concat({ ...data, amount: 1 }));
     }
   }
+  function removeFromCart(id) {
+    //find and mofity product
+    setCart((oldCart) => {
+      const subtracted = oldCart.map((item) => {
+        if (item.id === id) {
+          return { ...item, amount: item.amount - 1 };
+        }
+        return item;
+      });
+      const filtered = subtracted.filter((item) => item.amount > 0);
+      return filtered;
+    });
+    //filter
+  }
   useEffect(() => {
     async function getData() {
       const res = await fetch("https://kea-alt-del.dk/t7/api/products");
@@ -37,7 +51,7 @@ function App() {
     <div className="App">
       <Header />
       <ProductList addToCart={addToCart} products={products} />
-      <Basket products={products} cart={cart} />
+      <Basket removeFromCart={removeFromCart} products={products} cart={cart} />
     </div>
   );
 }
