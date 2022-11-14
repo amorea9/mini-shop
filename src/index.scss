@@ -20,13 +20,69 @@
 }
 header {
   grid-column: 1/-1;
+  background-color: rgb(100, 185, 100);
+  margin-bottom: 3rem;
 }
 .ProductList {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
   margin-right: 3rem;
+  row-gap: 5rem;
+  margin-bottom: 3rem;
 }
 img {
   max-width: 100%;
+}
+nav {
+  min-height: 3rem;
+  background-color: rgb(67, 205, 184);
+  margin: 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+nav {
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 2rem;
+  }
+  a:hover {
+    color: rgb(15, 89, 103);
+  }
+}
+.Product {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  gap: 1rem;
+  p {
+    margin: 0;
+  }
+}
+h2 {
+  margin: 0;
+}
+button {
+  padding: 1rem;
+  margin-right: auto;
+  cursor: pointer;
+}
+input {
+  display: block;
+}
+form {
+  button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}
+.RemoveButton {
+  padding: 0.1rem 0.5rem;
+  margin-left: 0.5rem;
+}
+li {
+  margin-bottom: 1rem;
 }

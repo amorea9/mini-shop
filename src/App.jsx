@@ -6,6 +6,25 @@ import { useState, useEffect } from "react";
 function App() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [start, setStart] = useState(1);
+  const url = `https://kea-alt-del.dk/t7/api/products?limit=12&start=${start}`;
+
+  useEffect(() => {
+    async function getData() {
+      const res = await fetch(url);
+      const data = await res.json();
+      setProducts(data);
+    }
+    getData();
+  }, [start]);
+
+  // useEffect(() => {
+  //   fetch(url)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setProducts(data);
+  //     });
+  // }, [start]);
 
   function addToCart(data) {
     //do we have the product
@@ -36,22 +55,14 @@ function App() {
       const filtered = subtracted.filter((item) => item.amount > 0);
       return filtered;
     });
-    //filter
   }
-  useEffect(() => {
-    async function getData() {
-      const res = await fetch("https://kea-alt-del.dk/t7/api/products");
-      const data = await res.json();
-      setProducts(data);
-    }
-    getData();
-  }, []);
 
   return (
     <div className="App">
       <Header />
       <ProductList addToCart={addToCart} products={products} />
       <Basket removeFromCart={removeFromCart} products={products} cart={cart} />
+      <button onClick={() => setStart((oldValue) => oldValue + 10)}>Show next 10 items</button>
     </div>
   );
 }
